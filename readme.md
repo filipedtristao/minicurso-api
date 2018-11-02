@@ -1,69 +1,27 @@
-1. Iniciar um novo projeto Laravel
-```
-composer create-project --prefer-dist laravel/laravel minicurso-api
-```
-2. Colocar o .htaccess apropriado
-3. Renomear para apenas .htaccess
-4. Configurar o .env com o ambiente da máquina
-5. Mover o model de usuário para Models/
-6. Deletar a pasta Auth em Http/Controllers
-6. Remover rotas e arquivos inutilizados no RouteProvider
-7. Declarar arquivo de rotas customizado
-8. No arquivo customizado declarar rota index, com a versão da API
-9. Limpar a pasta resource
-10. Baixar pasta database no github e substituir pela do seu projeto
-11. Importar banco e registros
-```
-php artisan db:migrate
-php artisan db:seed
-```
-12. Adicionar a dependencia "tymon/jwt-auth": "1.0.*" no require do composer.json e rodar o comando:
-```
-composer update tymon/jwt-auth
-```
-13. Publicar os arquivos de configuração do plugin
-```
-php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
-```
-14. Rodar o comando para gerar o secret do JWT
-```
-php artisan jwt:secret
-```
-14. Colocar driver jwt como default nas configurações em auth.php
-15. Implementar a interface JWTSubject no Model de usuário, juntamente com os métodos getJWTIdentifier e getJWTCustomClaims
-```php
-<?php
-class User extends Authenticatable implements JWTSubject {
-    
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier() {
-        return $this->getKey(); // Eloquent Model method
-    }
+<h1>Introdução</h1>
 
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims() {
-        return [];
-    }
-}
-```
-15. Criar o controller para Login
-```
-php artisan make:controller LoginController
-```
-16. Criar a rota para login
-15. Criar o controller para Books
-```
-php artisan make:controller BookController
-```
-16. Criar as rotas para Books
+Esse repositório contém um projeto base de uma api desenvolvida com os conceitos da arquitetura REST e com autenticação JWT utilizando o Laravel 5.7. O projeto foi feito em conjunto com a equipe de desenvolvimento da [@eloverde-sistemas](https://github.com/eloverde-sistemas) no minicurso sobre APIs e arquitetura REST ministrado na empresa.
+
+Para esclarecer/exemplificar melhor os conceitos, abaixo há uma tradução/adaptação de um texto do blog [dasunhegoda](http://dasunhegoda.com/rest-api-architecture-best-practices/1049/), que explica os principais pontos. 
+
+<h2>Introdução?</h2>
+
+A Arquitetura SOA (Service Oriented Architecture ou Arquitetura Orientada a Serviço) nos dias atuais é um padrão que tem muita adesão e cada vez mais aplicações são desenvolvidas sob esse conceito. Nesse pattern de desenvolvimento, um conjunto de serviços garante a integração entre negócio e tecnologia por meio de interfaces e comunicação acoplada. 
+
+<h2>O que é um Service/API?</h2>
+Trata-se de uma interface utilizada para promover a comunicação entre componentes ou softwares. Um webservice é um subtipo de serviço/api que sempre irá operar a partir do protocólo HTTP.
+
+<h2>O que é REST?</h2>
+
+A grosso modo significa Representational State Transfer. É uma forma simples de fazer a comunicação entre um cliente e um servidor, geralmente utilizando JSON.
+
+<h2>Como deve funcionar um bom webservice?</h2>
+
+E quais os principais requisitos para desenvolver uma boa api REST?
+
+<h3>Mais concreta possível</h3>
+
+Os pontos de entrada para a api devem ser simples e refletir a lógica do sistema o máximo possível para o client que a está consumindo. Então quanto mais concreto e mais representar a realidade, melhor será.
 
 
-<b>A partir desse passo a API está configurada e pronta para ser utilizada.</b>
+![Exemplo](http://dasunhegoda.com/wp-content/uploads/2015/10/Diagram1.png)
