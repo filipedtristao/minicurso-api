@@ -66,4 +66,4 @@ php artisan make:controller BookController
 16. Criar as rotas para Books
 
 
-A partir desse passo a API está configurada e pronta para ser utilizada.
+<b>A partir desse passo a API está configurada e pronta para ser utilizada.</b>
