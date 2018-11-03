@@ -4,9 +4,12 @@ Esse repositório contém um projeto base de uma api desenvolvida com os conceit
 
 Para esclarecer/exemplificar melhor os conceitos, fiz um compilado de alguns textos, que estão referenciados abaixo: 
 
-<p>http://dasunhegoda.com/rest-api-architecture-best-practices/1049/</p>
-<p>(https://jwt.io/introduction/</p>
-<p>https://imasters.com.br/apis-microsservicos/restful-api-jwt-para-autenticacao</p>
+http://dasunhegoda.com/rest-api-architecture-best-practices/1049/ <br/>
+https://jwt.io/introduction/ <br/>
+https://imasters.com.br/apis-microsservicos/restful-api-jwt-para-autenticacao </br>
 
 Separei cada etapa do minicurso em pages da Wiki do projeto, para ficar mais organizado.
 
+[Arquitetura REST da API](https://github.com/filipedtristao/minicurso-api/wiki/Padr%C3%B5es-para-uma-API-REST)
+[Autenticação com JWT](https://github.com/filipedtristao/minicurso-api/wiki/Autentica%C3%A7%C3%A3o-com-JWT)
+[Passo a Passo de como o projeto foi feito](https://github.com/filipedtristao/minicurso-api/wiki/Passo-a-passo-para-configurar-a-aplica%C3%A7%C3%A3o-no-Laravel)
