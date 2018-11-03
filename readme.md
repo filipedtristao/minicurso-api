@@ -5,7 +5,7 @@ Esse repositório contém um projeto base de uma api desenvolvida com os conceit
 Para esclarecer/exemplificar melhor os conceitos, fiz um compilado de alguns textos, que estão referenciados abaixo: 
 
 <p>[Rest API Architeture Best Pratices](http://dasunhegoda.com/rest-api-architecture-best-practices/1049/)</p>
-<p>(Introduction to JSON Web Tokens)[https://jwt.io/introduction/]</p>
+<p>[Introduction to JSON Web Tokens](https://jwt.io/introduction/)</p>
 <p>[Restful API JWT para Autenticação](https://imasters.com.br/apis-microsservicos/restful-api-jwt-para-autenticacao)</p>
 
 
