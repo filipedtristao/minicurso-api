@@ -1,10 +1,15 @@
-<h1>Introdução</h1>
+<h1>Minicurso API</h1>
 
 Esse repositório contém um projeto base de uma api desenvolvida com os conceitos da arquitetura REST e com autenticação JWT utilizando o Laravel 5.7. O projeto foi feito em conjunto com a equipe de desenvolvimento da [@eloverde-sistemas](https://github.com/eloverde-sistemas) no minicurso sobre APIs e arquitetura REST ministrado na empresa.
 
-Para esclarecer/exemplificar melhor os conceitos, abaixo há uma tradução/adaptação de um texto do blog [dasunhegoda](http://dasunhegoda.com/rest-api-architecture-best-practices/1049/), que explica os principais pontos. 
+Para esclarecer/exemplificar melhor os conceitos, fiz um compilado de alguns textos, que estão referenciados abaixo: 
 
-<h2>Introdução?</h2>
+[dasunhegoda](http://dasunhegoda.com/rest-api-architecture-best-practices/1049/)
+https://imasters.com.br/apis-microsservicos/restful-api-jwt-para-autenticacao
+https://jwt.io/introduction/
+
+
+<h2>SOA</h2>
 
 A Arquitetura SOA (Service Oriented Architecture ou Arquitetura Orientada a Serviço) nos dias atuais é um padrão que tem muita adesão e cada vez mais aplicações são desenvolvidas sob esse conceito. Nesse pattern de desenvolvimento, um conjunto de serviços garante a integração entre negócio e tecnologia por meio de interfaces e comunicação acoplada. 
 
@@ -142,4 +147,54 @@ Mas como é possível validar as informações do usuário sem consultar nenhuma
 
 <h3>Estrutura de um token JWT</h3>
 
+Um token JWT é composto pelo <b>header</b> (cabeçalho), <b>payload</b> ou <b>claims</b> (corpo) e <b>signature</b> (assinatura).
+
 ![Estrutura do Token](https://static.imasters.com.br/wp-content/uploads/2017/05/04-1.png)
+
+<b>Header</b> Tipicamente consiste em um objeto JSON codificado em base64Url, com duas propriedades, o tipo do token, que será sempre JWT e qual a hash que está sendo usada, que pode ser HMAC SHA256 or RSA. Então um header descodificado de um token se parecerá muito com isso:
+
+```
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+<b>Payload ou Claims</b>
+
+Trata-se da representação da entidade que está autenticada (tipicamente o usuário). Existem três tipos de claims: registrados, públicos e privados. 
+
+Os claims registrados, são claims definidos dentro do padrão JWT, que não são obrigatórios no seu token, mas são recomendados por questões de padronização. Alguns desses claims são iss (issuer ou origem do token), exp (expiration time, é a timestamp de quando o token expira), sub (subject, trata-se da entidade que o token pertence, geralmente o id do usuário) entre [outros](https://tools.ietf.org/html/rfc7519#section-4.1)
+
+Os claims públicos são informações customizadas que você deseja colocar em seu token que devem ou ser registradas no [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml) ou devem ser resistentes a colisão (devem ser únicos) contendo algum tipo de namespace. Dificilmente você irá utilizar esses.
+
+Os claims privados, assim como os públicos, serão os claims que conterão as informações personalizadas que você deseja enviar, porém sem a necessidade de serem resistentes a colisão. 
+
+Assim como o header, o payload trata-se de um objeto JSON codificado em Base64Url. Abaixo um exemplo de payload:
+```
+{
+  "sub": "1234567890", //claim registrado
+  "eloverde_sistemas_id": "1", //claim público, repare no namespace que antecede a propriedade
+  "eloverde_sistemas_name": "John Doe", //claim público, repare no namespace que antecede a propriedade
+  "admin": true //claim privado, repare que é uma propriedade do objeto não registrada e que não contem namespace
+}
+```
+
+<b>Importante</b> Uma vez que o token pode ser facilmente decodificado, você não deve guardar nenhuma informação confidencial, como senha.
+
+<b>Signature</b>
+
+É assinatura do seu token. Ele é formado a partir da concatenação do header do seu token e do payload. O verificador será um secret, uma chave secreta que apenas você terá acesso. Então utilizando o algoritmo de encriptação HMAC SHA256, a geração de um token JWT se daria da seguinte forma:
+
+```
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+```
+
+Se você quiser testar um token JWT e ver como ele fica decodificado, pode utilizar esse [link](https://jwt.io/) que tem uma ferramenta muito bacana pra isso.
+
+Exemplo:
+
+![Gerador](https://cdn.auth0.com/blog/legacy-app-auth/legacy-app-auth-5.png)
