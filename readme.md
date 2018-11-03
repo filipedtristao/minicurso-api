@@ -10,6 +10,6 @@ https://imasters.com.br/apis-microsservicos/restful-api-jwt-para-autenticacao </
 
 Separei cada etapa do minicurso em pages da Wiki do projeto, para ficar mais organizado.
 
-* [Arquitetura REST da API](https://github.com/filipedtristao/minicurso-api/wiki/Padr%C3%B5es-para-uma-API-REST)
-* [Autenticação com JWT](https://github.com/filipedtristao/minicurso-api/wiki/Autentica%C3%A7%C3%A3o-com-JWT)
-* [Passo a Passo de como o projeto foi feito](https://github.com/filipedtristao/minicurso-api/wiki/Passo-a-passo-para-configurar-a-aplica%C3%A7%C3%A3o-no-Laravel)
+* [Arquitetura REST da API](https://github.com/filipedtristao/minicurso-api/wiki/1.-Padr%C3%B5es-para-uma-API-REST)
+* [Autenticação com JWT](https://github.com/filipedtristao/minicurso-api/wiki/2.-Autentica%C3%A7%C3%A3o-com-JWT)
+* [Passo a Passo de como o projeto foi feito](https://github.com/filipedtristao/minicurso-api/wiki/3.-Passo-a-passo-para-configurar-a-aplica%C3%A7%C3%A3o-no-Laravel)
